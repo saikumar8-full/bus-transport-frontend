@@ -1,0 +1,90 @@
+/* General Background */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f5f7; /* Light grey-blue background */
+    margin: 0;
+    padding: 0;
+}
+
+/* Header common styles */
+header {
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Admin Portal Styles */
+.admin-portal {
+    background-color: #1f3c88; /* Deep Blue for admin */
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 800px;
+    margin: 30px auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.admin-portal button {
+    background-color: #ffc107; /* Amber buttons */
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.admin-portal button:hover {
+    background-color: #e0a800;
+}
+
+/* Student Portal Styles */
+.student-portal {
+    background-color: #28a745; /* Green for student */
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 800px;
+    margin: 30px auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.student-portal button {
+    background-color: #17a2b8; /* Cyan buttons */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.student-portal button:hover {
+    background-color: #138496;
+}
+
+/* Input Fields */
+input[type="text"], input[type="password"], input[type="number"] {
+    padding: 10px;
+    margin: 10px 0;
+    width: 95%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Common Footer */
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #343a40;
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
