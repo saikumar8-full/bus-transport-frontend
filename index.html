@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Bus Ticket Booking</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Inline simple style for now to ensure it looks okay if css missing -->
+</head>
+
+<body>
+
+    <header>
+        <h1>College Transport Portal</h1>
+    </header>
+
+    <div class="container">
+
+        <!-- Portal Selection -->
+        <div id="portal-selection" class="portal-cards">
+            <div class="card portal-card" onclick="openAdminPortal()">
+                <h2>Admin Portal</h2>
+                <p>Manage Buses, Routes, and Students</p>
+            </div>
+            <div class="card portal-card" onclick="openStudentPortal()">
+                <h2>Student Portal</h2>
+                <p>Book Tickets and View History</p>
+            </div>
+        </div>
+
+        <!-- Admin Login Modal -->
+        <div id="admin-login-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModals()">&times;</span>
+                <h2>Admin Login</h2>
+                <form id="admin-login-form">
+                    <div class="form-group">
+                        <label for="admin-id">Employee ID</label>
+                        <input type="text" id="admin-id" required placeholder="ADMIN01">
+                        <small>No spaces allowed</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-pass">Password</label>
+                        <input type="password" id="admin-pass" required placeholder="admin123">
+                        <small>No spaces allowed</small>
+                    </div>
+                    <button type="submit" class="btn-primary">Login</button>
+                    <p id="admin-error" class="error-msg"></p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Student Auth Modal -->
+        <div id="student-auth-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModals()">&times;</span>
+
+                <!-- Toggle Login/Register -->
+                <div class="form-toggle">
+                    <button id="btn-login-view" class="active" onclick="toggleStudentView('login')">Login</button>
+                    <button id="btn-register-view" onclick="toggleStudentView('register')">Register</button>
+                </div>
+
+                <!-- Login Form -->
+                <form id="student-login-form">
+                    <h2>Student Login</h2>
+                    <div class="form-group">
+                        <label for="student-reg-login">Registration Number</label>
+                        <input type="text" id="student-reg-login" required placeholder="25L31A05XX">
+                    </div>
+                    <div class="form-group">
+                        <label for="student-pass-login">Password</label>
+                        <input type="password" id="student-pass-login" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Login</button>
+                    <p id="student-login-error" class="error-msg"></p>
+                </form>
+
+                <!-- Registration Form -->
+                <form id="student-register-form" class="hidden">
+                    <h2>Student Registration</h2>
+                    <div class="form-group">
+                        <label for="reg-reg">Registration Number (e.g. 25L31A0501)</label>
+                        <input type="text" id="reg-reg" required placeholder="25L31A05XX"
+                            oninput="this.value = this.value.toUpperCase()">
+                        <small>Format: 25L31A05XX (Caps & Numbers only)</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-pass">Password</label>
+                        <input type="password" id="reg-pass" required>
+                        <small>No spaces allowed</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-year">Year</label>
+                        <select id="reg-year" required>
+                            <option value="">Select Year</option>
+                            <option value="1">1st Year</option>
+                            <option value="2">2nd Year</option>
+                            <option value="3">3rd Year</option>
+                            <option value="4">4th Year</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-branch">Branch</label>
+                        <select id="reg-branch" required>
+                            <option value="">Select Branch</option>
+                            <option value="CSE">CSE</option>
+                            <option value="ECE">ECE</option>
+                            <option value="EEE">EEE</option>
+                            <option value="AI">AI</option>
+                            <option value="AI&DS">AI&DS</option>
+                            <option value="DS">DS</option>
+                            <option value="CSC">CSC</option>
+                            <option value="MECHANICAL">MECHANICAL</option>
+                            <option value="CIVIL">CIVIL</option>
+                            <option value="ECM">ECM</option>
+                            <option value="IT">IT</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-section">Section</label>
+                        <input type="text" id="reg-section" required placeholder="A">
+                    </div>
+
+                    <button type="submit" class="btn-primary">Register & Login</button>
+                    <p id="register-error" class="error-msg"></p>
+                </form>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem; color: #666;">
+            <small>Demo Mode: Frontend Only (localStorage)</small>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/login.js"></script>
+</body>
+
+</html>

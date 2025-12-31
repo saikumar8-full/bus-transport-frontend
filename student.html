@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Book Ticket</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="container" style="display:flex; justify-content: space-between; align-items: center;">
+            <h1>Student Portal</h1>
+            <button onclick="logout()"
+                style="background:none; border:1px solid white; color:white; padding:5px 10px; cursor:pointer;">Logout</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('book')">Book Ticket</div>
+            <div class="tab" onclick="showTab('my-bookings')">My Bookings</div>
+            <div class="tab" onclick="showTab('support')">Support</div>
+        </div>
+
+        <!-- Booking Tab -->
+        <div id="book" class="tab-content">
+            <div class="card">
+                <h3>Step 1: Select Route</h3>
+                <div class="form-group">
+                    <label>Available Routes</label>
+                    <select id="route-select" onchange="onRouteSelect()">
+                        <option value="">-- Select a Route --</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="step-2" class="card hidden" style="margin-top: 1rem;">
+                <h3>Step 2: Select Substation</h3>
+                <div class="form-group">
+                    <label>Boarding Point</label>
+                    <select id="substation-select" onchange="onSubstationSelect()">
+                        <option value="">-- Select Substation --</option>
+                    </select>
+                    <p id="price-display" style="font-weight:bold; margin-top:0.5rem;"></p>
+                </div>
+            </div>
+
+            <div id="step-3" class="card hidden" style="margin-top: 1rem;">
+                <h3>Step 3: Select Seat</h3>
+                <p>Bus Number: <span id="bus-display"></span></p>
+                <div id="seat-map" class="seat-grid"></div>
+                <p style="margin-top:1rem;">Selected Seat: <span id="selected-seat-display">None</span></p>
+                <button id="pay-btn" class="btn-primary" style="margin-top:1rem;" disabled
+                    onclick="processPayment()">Proceed to Payment</button>
+            </div>
+        </div>
+
+        <!-- My Bookings Tab -->
+        <div id="my-bookings" class="tab-content hidden">
+            <div class="card">
+                <h3>My Bookings</h3>
+                <table id="my-booking-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Route</th>
+                            <th>Substation</th>
+                            <th>Seat</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Payment Modal -->
+        <div id="payment-modal" class="hidden"
+            style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:999; display:flex; justify-content:center; align-items:center;">
+            <div class="card" style="width:300px; text-align:center;">
+                <h3>Payment Gateway</h3>
+                <p>Amount: ₹<span id="pay-amount"></span></p>
+                <div class="form-group">
+                    <input type="text" placeholder="Card Number (Dummy)" style="margin-bottom:0.5rem;">
+                    <input type="text" placeholder="CVV" style="width:50px;">
+                </div>
+                <button class="btn-primary" onclick="confirmBooking()">Pay Now</button>
+                <button onclick="closePayment()"
+                    style="margin-top:0.5rem; background:none; border:none; cursor:pointer; color:red;">Cancel</button>
+            </div>
+        </div>
+
+        <!-- Support Tab -->
+        <div id="support" class="tab-content hidden">
+            <div class="card">
+                <h3>Raise Issue</h3>
+                <form id="support-form">
+                    <div class="form-group">
+                        <label>Describe your issue</label>
+                        <textarea id="issue-text" rows="4" style="width:100%; padding:0.5rem;" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Submit Ticket</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/student.js"></script>
+</body>
+
+</html>

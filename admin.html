@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - College Transport</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="container" style="display:flex; justify-content: space-between; align-items: center;">
+            <h1>Admin Portal</h1>
+            <button onclick="logout()"
+                style="background:none; border:1px solid white; color:white; padding:5px 10px; cursor:pointer;">Logout</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('buses')">Bus Management</div>
+            <div class="tab" onclick="showTab('routes')">Routes & Substations</div>
+            <div class="tab" onclick="showTab('bookings')">Bookings</div>
+            <div class="tab" onclick="showTab('support')">Support Tickets</div>
+        </div>
+
+        <!-- Bookings Tab -->
+        <div id="bookings" class="tab-content hidden">
+            <div class="card">
+                <h3>All Bookings</h3>
+                <input type="text" id="booking-search" placeholder="Search by Reg No..."
+                    style="width: 100%; padding: 10px; margin-bottom: 1rem;" onkeyup="filterBookings()">
+                <table id="bookings-table">
+                    <thead>
+                        <tr>
+                            <th>Reg No</th>
+                            <th>Details</th>
+                            <th>Bus / Seat</th>
+                            <th>Route</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Bus Management Tab -->
+        <div id="buses" class="tab-content">
+            <div class="card">
+                <h3>Add New Bus</h3>
+                <form id="add-bus-form">
+                    <div class="form-group">
+                        <label>Bus Number</label>
+                        <input type="text" id="bus-number" required placeholder="e.g., BUS-03">
+                    </div>
+                    <div class="form-group">
+                        <label>Capacity (50-70)</label>
+                        <input type="number" id="bus-capacity" min="50" max="70" required value="50">
+                    </div>
+                    <button type="submit" class="btn-primary">Add Bus</button>
+                </form>
+            </div>
+            <div class="card" style="margin-top: 2rem;">
+                <h3>Existing Buses</h3>
+                <table id="buses-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Bus Number</th>
+                            <th>Capacity</th>
+                            <th>Route</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Routes Tab -->
+        <div id="routes" class="tab-content hidden">
+            <div class="card">
+                <h3>Add New Route</h3>
+                <form id="add-route-form">
+                    <div class="form-group">
+                        <label>Select Bus</label>
+                        <select id="route-bus-select" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Route Name</label>
+                        <input type="text" id="route-name" required placeholder="e.g., Campus - Mall">
+                    </div>
+                    <button type="submit" class="btn-primary">Create Route</button>
+                </form>
+            </div>
+
+            <div class="card" style="margin-top: 2rem;">
+                <h3>Add Substation to Route</h3>
+                <form id="add-substation-form">
+                    <div class="form-group">
+                        <label>Select Route</label>
+                        <select id="substation-route-select" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Substation Name</label>
+                        <input type="text" id="sub-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Price</label>
+                        <input type="number" id="sub-price" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Arrival Time</label>
+                        <input type="time" id="sub-arrival" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Departure Time</label>
+                        <input type="time" id="sub-depart" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Add Substation</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Support Tab -->
+        <div id="support" class="tab-content hidden">
+            <div class="card">
+                <h3>Student Support Issues</h3>
+                <table id="support-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student</th>
+                            <th>Issue</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>
